@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: stockprices
+#Cria uma porta aleatória onde esse servidor será executado
+  server:
+    port: -1
+#A configuração SEGUINTE registra um aplicativo Micronaut com Eureka com configuração mínima
+consul:
+    client:
+      registration:
+        enabled: true
+        defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+
