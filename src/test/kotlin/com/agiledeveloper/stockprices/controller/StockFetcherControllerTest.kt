@@ -1,8 +1,7 @@
 package com.agiledeveloper.stockprices
 
-import io.micronaut.http.HttpStatus
+import com.agiledeveloper.stockprices.domain.Stock
 import io.micronaut.http.annotation.Get
-import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest

@@ -1,10 +1,10 @@
-package com.agiledeveloper.stockprices
+package com.agiledeveloper.stockprices.controller.rest
 
+import com.agiledeveloper.stockprices.domain.Stock
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.reactivex.Flowable
 import java.time.LocalDateTime
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 @Controller("/")

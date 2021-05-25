@@ -1,13 +1,42 @@
+#Ao usar o Service Discovery, o Micronaut registrará o serviço no Consul usando o
+#nome definido em micronaut.application.name. Se o aplicativo também usar um servidor HTTP
+#(Netty, Tomcat, ...), o Micronaut registrará o aplicativo com o mesmo nome e uma porta
+#diferente no Consul. Caso você queira usar um nome diferente para o serviço gRPC no
+#Consul usar a estrutura grpc.server.instance-id
+
+
 micronaut:
   application:
+    # A porta HTTP será registrada no Consul com o nome stockprices
     name: stockprices
 #Cria uma porta aleatória onde esse servidor será executado
   server:
     port: -1
 #A configuração SEGUINTE registra um aplicativo Micronaut com Eureka com configuração mínima
+grpc:
+  server:
+    port: ${random.port}
+      # A porta gRPC será registrada no Consul com o nome hello-grpc
+    instance-id: 'hello-grpc'
 consul:
-    client:
-      registration:
-        enabled: true
-        defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
-
+  client:
+    registration:
+      enabled: true
+      defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+datasources:
+  default:
+    url: jdbc:h2:mem:devDb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+    schema-generate: CREATE_DROP
+    dialect: H2
+jpa:
+  default:
+    show_sql: true
+    entity-scan:
+      packages: 'com.agiledeveloper.stockprices.domain'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update

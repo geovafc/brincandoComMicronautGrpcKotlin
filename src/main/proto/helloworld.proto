@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+//Se falso, apenas um único arquivo .java será gerado para este .protoarquivo e
+// todas as classes / enums / etc Java. gerados para as mensagens, serviços e enumerações
+// de nível superior serão aninhados dentro de uma classe externa
+// (consulte Recursos java_outer_classname).
+// Se verdadeiro, .javaarquivos separados serão gerados para cada uma das
+// classes / enums / etc Java. gerado para as mensagens de nível superior, serviços e
+// enumerações, e a classe Java wrapper gerada para este .protoarquivo não conterá nenhuma
+// classe / enums / etc aninhados. Esta é uma opção booleana cujo padrão é false.
+option java_multiple_files = true;
+
+//o pacote que você deseja usar para as classes Java / Kotlin geradas.
+option java_package = "helloworld";
+
+//O nome da classe Java do wrapper que você deseja gerar
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}

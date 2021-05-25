@@ -1,4 +1,4 @@
-package com.agiledeveloper.stockprices
+package com.agiledeveloper.stockprices.domain
 
 
 data class Stock (val ticker: String, val price: Int) {
